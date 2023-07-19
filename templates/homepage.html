@@ -17,14 +17,17 @@
                 <div class="col-md-6">
                     <div class="card mt-4">
                         <div class="card-body">
-                            <h2 class="card-title"><b>Logo API</b></h2>
+                            <h2 class="card-title"><b>Nutrition API</b></h2>
                             <form id="inputForm">
                                 {% csrf_token %}
                                 <div class="mb-3">
                                     <label for="input" class="form-label"
-                                        >The Logo API provides logo images for
-                                        tens of thousands of different
-                                        companies.</label
+                                        >The Nutrition API extracts nutrition
+                                        information from text using natural
+                                        language processing. From food blogs to
+                                        menus to recipes, it can read any text
+                                        and calculate the corresponding
+                                        nutrition data.</label
                                     >
                                     <textarea
                                         class="form-control"
@@ -32,7 +35,7 @@
                                         rows="8"></textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary">
-                                    Convert
+                                    Search
                                 </button>
                             </form>
                         </div>
@@ -61,8 +64,13 @@
                 },
                 dataType: "json",
                 success: function (response) {
-                    logJSONData(response)
+                    if (Array.isArray(response) && response.length === 0) {
+                        $("#jsonContainer").append(`<p>no data found</p>`)
+                    } else {
+                        logJSONData(response)
+                    }
                 },
+
                 error: function (xhr, status, error) {
                     console.error("Error occurred while fetching data:", error)
                 },

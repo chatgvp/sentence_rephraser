@@ -33,7 +33,7 @@ def home(request):
 @api_view(["GET"])
 def display_data(request):
     name = request.GET.get("inputValue")
-    api_url = "https://api.api-ninjas.com/v1/logo?name={}".format(name)
+    api_url = "https://api.api-ninjas.com/v1/nutrition?query={}".format(name)
     response = requests.get(
         api_url, headers={"X-Api-Key": "fpv5vkEs8QSu3Axo0jj0rw==yrrXESw1tDzvXgtF"}
     )
